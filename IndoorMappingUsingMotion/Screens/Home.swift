@@ -16,9 +16,16 @@ struct Home: View {
         VStack{
             //Asking for motion permission and starting pedometer
             MotionView()
+            //Getting User Headings
+            UserHeading()
+           
+            //MARK:- CUSTOM UI BELOW
+            
             
             //User Movement Information
             TrackingInfo()
+            
+              
             
         }
     }
@@ -26,5 +33,5 @@ struct Home: View {
     }
 }
 
-//Done3
+//Done9
 

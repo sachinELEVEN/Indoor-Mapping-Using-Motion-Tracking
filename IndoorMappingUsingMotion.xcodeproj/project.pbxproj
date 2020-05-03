@@ -20,6 +20,8 @@
 		8EA757BE245E5CD9004D1874 /* IndependentComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757BD245E5CD9004D1874 /* IndependentComponents.swift */; };
 		8EA757C0245E5D17004D1874 /* TrackingInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757BF245E5D17004D1874 /* TrackingInfo.swift */; };
 		8EA757C2245E6345004D1874 /* MotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757C1245E6345004D1874 /* MotionView.swift */; };
+		8EA757C4245E6D55004D1874 /* compassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757C3245E6D55004D1874 /* compassViewController.swift */; };
+		8EA757C6245E9691004D1874 /* DottedCircleAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757C5245E9691004D1874 /* DottedCircleAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		8EA757BD245E5CD9004D1874 /* IndependentComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndependentComponents.swift; sourceTree = "<group>"; };
 		8EA757BF245E5D17004D1874 /* TrackingInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingInfo.swift; sourceTree = "<group>"; };
 		8EA757C1245E6345004D1874 /* MotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionView.swift; sourceTree = "<group>"; };
+		8EA757C3245E6D55004D1874 /* compassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compassViewController.swift; sourceTree = "<group>"; };
+		8EA757C5245E9691004D1874 /* DottedCircleAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedCircleAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 			children = (
 				8EA757B1245E4111004D1874 /* MotionViewController.swift */,
 				8EA757C1245E6345004D1874 /* MotionView.swift */,
+				8EA757C3245E6D55004D1874 /* compassViewController.swift */,
 			);
 			path = MotionHandling;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 				8EA757BB245E5C35004D1874 /* Home.swift */,
 				8EA757BD245E5CD9004D1874 /* IndependentComponents.swift */,
 				8EA757BF245E5D17004D1874 /* TrackingInfo.swift */,
+				8EA757C5245E9691004D1874 /* DottedCircleAnimation.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -195,10 +201,12 @@
 				8EA757B9245E4C41004D1874 /* SetupOnLaunch.swift in Sources */,
 				8EA757BE245E5CD9004D1874 /* IndependentComponents.swift in Sources */,
 				8EA757C0245E5D17004D1874 /* TrackingInfo.swift in Sources */,
+				8EA757C6245E9691004D1874 /* DottedCircleAnimation.swift in Sources */,
 				8EA7579E245E40BE004D1874 /* IndoorMappingUsingMotion.xcdatamodeld in Sources */,
 				8EA75799245E40BE004D1874 /* AppDelegate.swift in Sources */,
 				8EA757C2245E6345004D1874 /* MotionView.swift in Sources */,
 				8EA7579B245E40BE004D1874 /* SceneDelegate.swift in Sources */,
+				8EA757C4245E6D55004D1874 /* compassViewController.swift in Sources */,
 				8EA757BC245E5C35004D1874 /* Home.swift in Sources */,
 				8EA757B2245E4111004D1874 /* MotionViewController.swift in Sources */,
 			);

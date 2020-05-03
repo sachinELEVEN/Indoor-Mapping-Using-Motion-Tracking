@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 ///Use this instance for getting relevant information about tracking.
 ///VM - View Model
@@ -15,6 +16,11 @@ class VMMotionTrackingInfo : ObservableObject{
    @Published var totalSteps : Int = 0
     @Published var totalDistance : Float = 0
    @Published  var activityTypes = [String]()
+    @Published  var currentHeading : Float = 0
+    
+    
+    
+    
     
     func activities()->String{
         var act = ""
@@ -28,6 +34,31 @@ class VMMotionTrackingInfo : ObservableObject{
     }
     
     
+    func getUserDirections()->String{
+     
+       return String(Int(self.currentHeading))
+  
+    }
+    
+    
+    func getCircleRadius(_ circleNum : Int)->CGFloat{
+         /*
+             Radius increases as we go towards East or West
+             Radius decreases as we go towards North or South
+             
+             We do this using absolute value of Sin
+        */
+            
+          let absSin = abs(sinf(self.currentHeading * Float.pi / 180))
+         let const = 20*absSin
+        let radius = 100  + absSin*50 + (const * Float(circleNum))
+     
+        
+       
+        return CGFloat(radius)
+    }
+    
+    
 }
 
 
@@ -37,6 +68,7 @@ class DMMotionTrackingHandler {
     
    fileprivate var trackingSessions = [DMMotionTrackingSession]()
     
+    var userDirections = [Float]()
     
     ///Called By MotionViewController when a session is created.
     func addNewSession(steps:Int,distance : Float,activityTypes : [String], Start:Date, end : Date){
@@ -61,7 +93,8 @@ class DMMotionTrackingHandler {
         let newSession = DMMotionTrackingSession(sessionSteps: sessionSteps, sessionDistance: sessionDistance,sessionActivityTypes: activityTypes, sessionStartTime: Start, sessionEndTime: end)
         
         //Get Directions for this time perdiod/session
-        newSession.sessionDirections = []
+        newSession.sessionDirections = self.userDirections
+        self.userDirections.removeAll()
         
         
         //updating display info
@@ -74,7 +107,7 @@ class DMMotionTrackingHandler {
     private func updateTrackingDisplayInfo(sessionSteps : Int,sessionDistance : Float,activities: [String]){
        
         DispatchQueue.main.async {
-            print(sessionSteps)
+          
         GlobalMotionTrackingDisplayInfo.totalSteps += sessionSteps
         GlobalMotionTrackingDisplayInfo.totalDistance += sessionDistance
         GlobalMotionTrackingDisplayInfo.activityTypes.append(contentsOf: activities)
@@ -121,4 +154,4 @@ fileprivate class DMMotionTrackingSession {
      */
         
 }
-//Done30
+//Done46

@@ -15,13 +15,24 @@ struct TrackingInfo: View {
     var body: some View {
         VStack{
           
+            Text(motionTrackingInfo.getUserDirections())
+                .font(.system(size: 120, weight: Font.Weight.black, design: Font.Design.default))
             
-             UIScreenHeader(title: "Movement")
+            UIScreenHeader(title: "Movement").padding(.top)
             
             label(imgName: "flame.fill", title: "Steps", content:"\(motionTrackingInfo.totalSteps)" , units: "steps")
             label(imgName: "flame.fill", title: "Distance", content:"\(Int(motionTrackingInfo.totalDistance))" , units: "metres")
-//            label(imgName: "flame.fill", title: "Movement Types", content:motionTrackingInfo.activities() , units: "",small:true)
+
+            
+            ZStack{
+            
+                  ForEach(0...10,id:\.self){index in
+                    AnyUIKitView(viewController: DottedCircle(radius: self.motionTrackingInfo.getCircleRadius(index)),circleNum:index)
+                  }
+                  }
+            
+            
         }.padding(.horizontal)
     }
 }
-//Done10
+//Done27

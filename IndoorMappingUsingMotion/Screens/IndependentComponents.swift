@@ -42,7 +42,7 @@ func UIScreenHeader(title : String)->some View{
     return HStack{
         Text(title)
             .fontWeight(.heavy)
-            .font(.largeTitle)
+            .font(.headline)
         
         Spacer()
     }.padding(.leading)
