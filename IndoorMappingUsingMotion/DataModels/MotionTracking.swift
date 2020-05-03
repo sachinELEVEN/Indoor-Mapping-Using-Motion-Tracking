@@ -14,7 +14,18 @@ class VMMotionTrackingInfo : ObservableObject{
     
    @Published var totalSteps : Int = 0
     @Published var totalDistance : Float = 0
-   @Published var activityTypes = [String]()
+   @Published  var activityTypes = [String]()
+    
+    func activities()->String{
+        var act = ""
+        for activity in self.activityTypes{
+            act += activity + ","
+        }
+        if act.count != 0{
+            act.removeLast()
+        }
+        return act
+    }
     
     
 }
@@ -62,9 +73,12 @@ class DMMotionTrackingHandler {
     
     private func updateTrackingDisplayInfo(sessionSteps : Int,sessionDistance : Float,activities: [String]){
        
+        DispatchQueue.main.async {
+            print(sessionSteps)
         GlobalMotionTrackingDisplayInfo.totalSteps += sessionSteps
         GlobalMotionTrackingDisplayInfo.totalDistance += sessionDistance
         GlobalMotionTrackingDisplayInfo.activityTypes.append(contentsOf: activities)
+    }
     }
     
     
@@ -107,4 +121,4 @@ fileprivate class DMMotionTrackingSession {
      */
         
 }
-//Done20
+//Done30

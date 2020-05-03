@@ -12,12 +12,13 @@ class MotionViewController: UIViewController {
     private var activityTypes = [String]()
 
  
-   // @IBOutlet weak var stepsCountLabel: UILabel!
-   // @IBOutlet weak var activityTypeLabel: UILabel!
+  
 
     override func viewDidLoad() {
         super.viewDidLoad()
    
+      let _ = self.startMotionTracking()
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
