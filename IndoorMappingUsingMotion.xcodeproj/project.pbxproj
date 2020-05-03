@@ -14,6 +14,9 @@
 		8EA757A2245E40C5004D1874 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA757A1245E40C5004D1874 /* Assets.xcassets */; };
 		8EA757A5245E40C5004D1874 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8EA757A4245E40C5004D1874 /* Preview Assets.xcassets */; };
 		8EA757A8245E40C5004D1874 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8EA757A6245E40C5004D1874 /* LaunchScreen.storyboard */; };
+		8EA757B2245E4111004D1874 /* MotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757B1245E4111004D1874 /* MotionViewController.swift */; };
+		8EA757B7245E4B60004D1874 /* MotionTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757B6245E4B60004D1874 /* MotionTracking.swift */; };
+		8EA757B9245E4C41004D1874 /* SetupOnLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757B8245E4C41004D1874 /* SetupOnLaunch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,9 @@
 		8EA757A4245E40C5004D1874 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8EA757A7245E40C5004D1874 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8EA757A9245E40C5004D1874 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8EA757B1245E4111004D1874 /* MotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionViewController.swift; sourceTree = "<group>"; };
+		8EA757B6245E4B60004D1874 /* MotionTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionTracking.swift; sourceTree = "<group>"; };
+		8EA757B8245E4C41004D1874 /* SetupOnLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupOnLaunch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,8 @@
 		8EA75797245E40BE004D1874 /* IndoorMappingUsingMotion */ = {
 			isa = PBXGroup;
 			children = (
+				8EA757B5245E4B49004D1874 /* DataModels */,
+				8EA757B0245E40F7004D1874 /* MotionHandling */,
 				8EA75798245E40BE004D1874 /* AppDelegate.swift */,
 				8EA7579A245E40BE004D1874 /* SceneDelegate.swift */,
 				8EA7579F245E40BE004D1874 /* ContentView.swift */,
@@ -66,6 +74,7 @@
 				8EA757A9245E40C5004D1874 /* Info.plist */,
 				8EA7579C245E40BE004D1874 /* IndoorMappingUsingMotion.xcdatamodeld */,
 				8EA757A3245E40C5004D1874 /* Preview Content */,
+				8EA757B8245E4C41004D1874 /* SetupOnLaunch.swift */,
 			);
 			path = IndoorMappingUsingMotion;
 			sourceTree = "<group>";
@@ -76,6 +85,22 @@
 				8EA757A4245E40C5004D1874 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		8EA757B0245E40F7004D1874 /* MotionHandling */ = {
+			isa = PBXGroup;
+			children = (
+				8EA757B1245E4111004D1874 /* MotionViewController.swift */,
+			);
+			path = MotionHandling;
+			sourceTree = "<group>";
+		};
+		8EA757B5245E4B49004D1874 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				8EA757B6245E4B60004D1874 /* MotionTracking.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,10 +174,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8EA757B7245E4B60004D1874 /* MotionTracking.swift in Sources */,
+				8EA757B9245E4C41004D1874 /* SetupOnLaunch.swift in Sources */,
 				8EA7579E245E40BE004D1874 /* IndoorMappingUsingMotion.xcdatamodeld in Sources */,
 				8EA75799245E40BE004D1874 /* AppDelegate.swift in Sources */,
 				8EA757A0245E40BE004D1874 /* ContentView.swift in Sources */,
 				8EA7579B245E40BE004D1874 /* SceneDelegate.swift in Sources */,
+				8EA757B2245E4111004D1874 /* MotionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
