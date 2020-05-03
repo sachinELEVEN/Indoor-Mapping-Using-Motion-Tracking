@@ -33,7 +33,7 @@ struct MotionView : UIViewControllerRepresentable {
 struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
     
     let viewController : T
-    let circleNum : Int
+    let lineNum : Int
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<AnyUIKitView>) -> T {
         return viewController
@@ -42,15 +42,11 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController:T, context: UIViewControllerRepresentableContext<AnyUIKitView>) {
       
         if let dottedCircle = uiViewController as? DottedCircle {
-            dottedCircle.addCircle(radiusL: GlobalMotionTrackingDisplayInfo.getCircleRadius(self.circleNum))
+           // dottedCircle.addCircle(radiusL: GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum))
+            dottedCircle.drawLineFromPoint(X: Float(GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum)))
+            
        }
         
-        
     }
-    
-    
-    //MARK:- Public Methods to interact with MotionV
-    
-    
-    
 }
+//Done3

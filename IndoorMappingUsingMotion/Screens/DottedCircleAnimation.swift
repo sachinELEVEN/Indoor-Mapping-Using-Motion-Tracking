@@ -13,7 +13,7 @@ import UIKit
 class DottedCircle : UIViewController{
     
     var radius : CGFloat = 100
-    var circlePath : UIBezierPath? = nil
+    var path : UIBezierPath? = nil
     let shapeLayer = CAShapeLayer()
     
      init(radius:CGFloat){
@@ -37,10 +37,10 @@ class DottedCircle : UIViewController{
     
     func addCircle(radiusL:CGFloat){
         
-         circlePath = UIBezierPath(arcCenter: CGPoint(x: fullWidth/2, y: 100), radius: CGFloat(radiusL), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
+         path = UIBezierPath(arcCenter: CGPoint(x: fullWidth/2, y: 0), radius: CGFloat(radiusL), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
 
              
-             shapeLayer.path = circlePath!.cgPath
+             shapeLayer.path = path!.cgPath
              
 
              // Change the fill color
@@ -49,10 +49,11 @@ class DottedCircle : UIViewController{
              shapeLayer.strokeColor = UIColor.orange.cgColor
              // You can change the line width
              shapeLayer.lineWidth = 2;
-             shapeLayer.lineJoin = CAShapeLayerLineJoin.round;
-             shapeLayer.lineCap = CAShapeLayerLineCap.round;
-             shapeLayer.lineDashPattern = [5,5];
-             shapeLayer.cornerRadius = 20
+            // shapeLayer.lineJoin = CAShapeLayerLineJoin.round;
+       // shapeLayer.lineCap = CAShapeLayerLineCap.round;
+     
+            // shapeLayer.lineDashPattern = [10,10];
+            // shapeLayer.cornerRadius = 50
            
             // shapeLayer.lineDashPhase = 3.0;
              
@@ -60,5 +61,25 @@ class DottedCircle : UIViewController{
              view.layer.addSublayer(shapeLayer)
     }
     
+    func drawLineFromPoint(X:Float, ofColor lineColor: UIColor = UIColor.orange) {
+print(X)
+        let start = CGPoint(x: Int(X), y: 0)
+        let end = CGPoint(x: Int(X), y: 200)
+        
+        //design the path
+         path = UIBezierPath()
+        path!.move(to: start)
+        path!.addLine(to: end)
+
+        //design path in layer
+       
+        shapeLayer.path = path!.cgPath
+        shapeLayer.strokeColor = lineColor.cgColor
+        shapeLayer.lineWidth = 8.0
+
+        self.view.layer.addSublayer(shapeLayer)
+    }
+    
     
 }
+//Done10

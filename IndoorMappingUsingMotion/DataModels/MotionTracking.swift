@@ -34,29 +34,82 @@ class VMMotionTrackingInfo : ObservableObject{
     }
     
     
-    func getUserDirections()->String{
+    func getUserDegrees()->String{
      
        return String(Int(self.currentHeading))
   
     }
     
     
-    func getCircleRadius(_ circleNum : Int)->CGFloat{
+    func getInterLineSpacing(_ circleNum : Int)->CGFloat{
          /*
              Radius increases as we go towards East or West
              Radius decreases as we go towards North or South
              
              We do this using absolute value of Sin
         */
-            
-          let absSin = abs(sinf(self.currentHeading * Float.pi / 180))
-         let const = 20*absSin
-        let radius = 100  + absSin*50 + (const * Float(circleNum))
-     
+          
+      //  let space = Float(fullWidth/8)
         
+          let absCos = abs(cosf(self.currentHeading * Float.pi / 180))
+       //  let const = 4 + 10*absCos
+       // let radius = 100  + absCos*50 + (const * Float(circleNum)) + 60
+     
+        let interSpace = (absCos*50)*Float(circleNum) + 4
        
-        return CGFloat(radius)
+        return CGFloat(interSpace)
     }
+    
+    
+    func getUserDirections()->String{
+        
+       /*
+         N - 22
+         NE - 67
+         E 112 
+         SE 157
+         S 202
+         SW 246
+         W 292
+         NW 337
+      
+         */
+       
+      
+        
+        if self.currentHeading<23 {
+            return "NORTH"
+        }
+        else if  self.currentHeading<68 {
+            return "NORTH EAST"
+        }
+        else if  self.currentHeading<113 {
+            return "EAST"
+        }
+        else if  self.currentHeading<158 {
+            return "SOUTH EAST"
+        }
+        else if  self.currentHeading<203 {
+            return "SOUTH"
+        }
+        else if  self.currentHeading<247 {
+            return "SOUTH WEST"
+        }
+        else if  self.currentHeading<293 {
+            return "WEST"
+        }
+        else if  self.currentHeading<338 {
+            return "NORTH WEST"
+        }else {
+            return "NORTH"
+        }
+        
+     
+    
+      }
+      
+      
+  
     
     
 }
@@ -154,4 +207,4 @@ fileprivate class DMMotionTrackingSession {
      */
         
 }
-//Done46
+//Done50

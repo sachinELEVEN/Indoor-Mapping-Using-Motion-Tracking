@@ -22,6 +22,7 @@
 		8EA757C2245E6345004D1874 /* MotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757C1245E6345004D1874 /* MotionView.swift */; };
 		8EA757C4245E6D55004D1874 /* compassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757C3245E6D55004D1874 /* compassViewController.swift */; };
 		8EA757C6245E9691004D1874 /* DottedCircleAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA757C5245E9691004D1874 /* DottedCircleAnimation.swift */; };
+		8EC7113D245ED41B00353BFE /* VectorSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EC7113C245ED41B00353BFE /* VectorSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		8EA757C1245E6345004D1874 /* MotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionView.swift; sourceTree = "<group>"; };
 		8EA757C3245E6D55004D1874 /* compassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = compassViewController.swift; sourceTree = "<group>"; };
 		8EA757C5245E9691004D1874 /* DottedCircleAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DottedCircleAnimation.swift; sourceTree = "<group>"; };
+		8EC7113C245ED41B00353BFE /* VectorSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				8EA757B6245E4B60004D1874 /* MotionTracking.swift */,
+				8EC7113C245ED41B00353BFE /* VectorSystem.swift */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -118,12 +121,20 @@
 		8EA757BA245E5C23004D1874 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				8EA757C9245EBBC8004D1874 /* BreatheAnimation */,
 				8EA757BB245E5C35004D1874 /* Home.swift */,
 				8EA757BD245E5CD9004D1874 /* IndependentComponents.swift */,
 				8EA757BF245E5D17004D1874 /* TrackingInfo.swift */,
 				8EA757C5245E9691004D1874 /* DottedCircleAnimation.swift */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		8EA757C9245EBBC8004D1874 /* BreatheAnimation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = BreatheAnimation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 			files = (
 				8EA757B7245E4B60004D1874 /* MotionTracking.swift in Sources */,
 				8EA757B9245E4C41004D1874 /* SetupOnLaunch.swift in Sources */,
+				8EC7113D245ED41B00353BFE /* VectorSystem.swift in Sources */,
 				8EA757BE245E5CD9004D1874 /* IndependentComponents.swift in Sources */,
 				8EA757C0245E5D17004D1874 /* TrackingInfo.swift in Sources */,
 				8EA757C6245E9691004D1874 /* DottedCircleAnimation.swift in Sources */,
