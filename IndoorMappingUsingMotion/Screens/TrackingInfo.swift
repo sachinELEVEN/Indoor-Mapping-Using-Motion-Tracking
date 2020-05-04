@@ -18,7 +18,7 @@ struct TrackingInfo: View {
             HStack{
                      
                            ForEach(0..<15,id:\.self){index in
-                             AnyUIKitView(viewController: DottedCircle(radius: self.motionTrackingInfo.getInterLineSpacing(index)),lineNum:index)
+                             AnyUIKitView(viewController: Shapes(radius: self.motionTrackingInfo.getInterLineSpacing(index)),lineNum:index)
                            
                            }.frame(height:200)
                             .animation(.easeIn)

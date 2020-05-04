@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class DottedCircle : UIViewController{
+class Shapes : UIViewController{
     
     var radius : CGFloat = 100
     var path : UIBezierPath? = nil
@@ -75,11 +75,14 @@ print(X)
        
         shapeLayer.path = path!.cgPath
         shapeLayer.strokeColor = lineColor.cgColor
-        shapeLayer.lineWidth = 8.0
+        shapeLayer.lineWidth = 16.0
+        
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
 
         self.view.layer.addSublayer(shapeLayer)
     }
     
     
 }
-//Done10
+//Done13

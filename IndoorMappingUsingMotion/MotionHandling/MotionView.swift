@@ -41,12 +41,12 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
     
     func updateUIViewController(_ uiViewController:T, context: UIViewControllerRepresentableContext<AnyUIKitView>) {
       
-        if let dottedCircle = uiViewController as? DottedCircle {
+        if let shapes = uiViewController as? Shapes {
            // dottedCircle.addCircle(radiusL: GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum))
-            dottedCircle.drawLineFromPoint(X: Float(GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum)))
+            shapes.drawLineFromPoint(X: Float(GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum)))
             
        }
         
     }
 }
-//Done3
+//Done5
