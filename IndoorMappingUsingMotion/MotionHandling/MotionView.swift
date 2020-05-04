@@ -34,6 +34,7 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
     
     let viewController : T
     let lineNum : Int
+    let drawPath : Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<AnyUIKitView>) -> T {
         return viewController
@@ -42,9 +43,13 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController:T, context: UIViewControllerRepresentableContext<AnyUIKitView>) {
       
         if let shapes = uiViewController as? Shapes {
-           // dottedCircle.addCircle(radiusL: GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum))
-            shapes.drawLineFromPoint(X: Float(GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum)))
             
+            if drawPath{
+             //   shapes.drawTracedPath()
+            }
+            else{
+            shapes.drawLineFromPoint(X: Float(GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum)))
+            }
        }
         
     }

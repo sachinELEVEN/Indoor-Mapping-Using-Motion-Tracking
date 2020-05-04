@@ -189,11 +189,11 @@ class DMMotionTrackingHandler {
             
         }
         
-        print("Display Complete Path Traced")
-        for path in completePath{
-            print("New Session")
-            DMMotionTrackingSession.displayPath(path)
-        }
+//        print("Display Complete Path Traced")
+//        for path in completePath{
+//            print("New Session")
+//            DMMotionTrackingSession.displayPath(path)
+//        }
         
         
         return completePath

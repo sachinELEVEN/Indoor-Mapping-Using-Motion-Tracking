@@ -12,17 +12,19 @@ import SwiftUI
 
 struct TrackingInfo: View {
     @ObservedObject var motionTrackingInfo = GlobalMotionTrackingDisplayInfo
+    @State var showPath = false
     var body: some View {
+       
         VStack{
             
             HStack{
-                     
+
                            ForEach(0..<15,id:\.self){index in
-                             AnyUIKitView(viewController: Shapes(radius: self.motionTrackingInfo.getInterLineSpacing(index)),lineNum:index)
-                           
-                           }.frame(height:200)
+                            AnyUIKitView(viewController: Shapes(lineSpacing: self.motionTrackingInfo.getInterLineSpacing(index),drawPath : false),lineNum : index, drawPath: false)
+
+                           }.frame(height:10)
                             .animation(.easeIn)
-                           
+
         }
              
                 
@@ -36,8 +38,15 @@ struct TrackingInfo: View {
                               
                  
                 
-                      
-                       
+             UIScreenHeader(title: "Path Traced")
+               .padding(.top)
+            
+           NavigationLink(destination: AnyUIKitView(viewController: Shapes(drawPath : true),lineNum: 0,drawPath: true)){
+            Button(action:{
+                self.showPath = true
+            }){ label(imgName: "location.north.line.fill", title: "Path Traced", content:"" , units: "")
+            }
+                  }
                
           
            
@@ -48,20 +57,15 @@ struct TrackingInfo: View {
             label(imgName: "flame.fill", title: "Distance", content:"\(Int(motionTrackingInfo.totalDistance))" , units: "metres")
 
             
-            Button(action:{ let _ = GlobalMotionTrackingHandler.getPath()}){
-            Text("Get Path")
-            }
-         //GlobalMotionTrackingHandler
-          
-        
-           // BreatheAnimation()
+
             
-            }//.background(AnyUIKitView(viewController : BreatheAnimationViewController()))
+            
+            }
         
         .padding(.horizontal)
-           
+        
        
         
     }
 }
-//Done30
+//Done40

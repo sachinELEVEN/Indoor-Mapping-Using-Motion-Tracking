@@ -12,13 +12,17 @@ import UIKit
 
 class Shapes : UIViewController{
     
-    var radius : CGFloat = 100
+    var lineSpacing : CGFloat = 100
+    var drawPath : Bool = false
     var path : UIBezierPath? = nil
     let shapeLayer = CAShapeLayer()
     
-     init(radius:CGFloat){
+    init(lineSpacing:CGFloat?=nil,drawPath : Bool){
          super.init(nibName: nil, bundle: nil)
-        self.radius = radius
+        self.drawPath = drawPath
+        if !drawPath{
+          self.lineSpacing = lineSpacing!
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -30,9 +34,12 @@ class Shapes : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        addCircle(radiusL: self.radius)
-        
+        if  self.drawPath{
+            self.drawTracedPath()
+        }else{
+            self.addCircle(radiusL: self.lineSpacing)
+        }
+            
     }
     
     func addCircle(radiusL:CGFloat){
@@ -64,7 +71,7 @@ class Shapes : UIViewController{
     func drawLineFromPoint(X:Float, ofColor lineColor: UIColor = UIColor.orange) {
 //print(X)
         let start = CGPoint(x: Int(X), y: 0)
-        let end = CGPoint(x: Int(X), y: 200)
+        let end = CGPoint(x: Int(X), y: 10)
         
         //design the path
          path = UIBezierPath()
@@ -84,5 +91,65 @@ class Shapes : UIViewController{
     }
     
     
+  //MARK:- Traced Path Drawing
+    
+     func drawTracedPath(){
+        
+       
+      let pathFinder = VMRouteDisplayingSystem()
+      let pathNodes = pathFinder.getPathNodes()
+       
+        //TEST NODES FOR PATH TRACING
+//        var localNodes = [Node]()
+//        let n1 = Node(x: 200, y: 450)
+//          let n2 = Node(x: 300, y: 450)
+//          let n3 = Node(x: 200, y:600 )
+//          let n4 = Node(x: 300, y: 650)
+//        localNodes.append(n1)
+//          localNodes.append(n2)
+//          localNodes.append(n3)
+//          localNodes.append(n4)
+        
+        
+        for i in 0..<pathNodes.count-1{
+            
+            let point1 = pathNodes[i]
+            let point2 = pathNodes[i+1]
+            let path = UIBezierPath()
+            let shapeLayer = CAShapeLayer()
+            
+            self.drawLineBW2Points(pathL: path,shapeLayerL: shapeLayer, point1: point1, point2: point2)
+         
+            
+        }
+        
+        
+    }
+    
+    
+    private func drawLineBW2Points(pathL:UIBezierPath,shapeLayerL:CAShapeLayer,point1: Node,point2 : Node,lineColor: UIColor = UIColor.blue){
+        print("Printing points")
+            print(point1.x,point1.y,point2.x,point2.y)
+        let start = CGPoint(x: point1.x, y: point1.y)
+         let end = CGPoint(x: point2.x, y: point2.y)
+               
+               //design the path
+               // path = UIBezierPath()
+               pathL.move(to: start)
+               pathL.addLine(to: end)
+
+               //design path in layer
+              
+               shapeLayerL.path = pathL.cgPath
+               shapeLayerL.strokeColor = lineColor.cgColor
+               shapeLayerL.lineWidth = 10.0
+               
+               shapeLayerL.lineJoin = CAShapeLayerLineJoin.round
+               shapeLayerL.lineCap = CAShapeLayerLineCap.round
+
+               self.view.layer.addSublayer(shapeLayerL)
+    }
+    
+    
 }
-//Done13
+//Done35

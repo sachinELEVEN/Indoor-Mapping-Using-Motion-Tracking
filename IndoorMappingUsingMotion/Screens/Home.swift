@@ -11,7 +11,9 @@ import SwiftUI
 
 
 struct Home: View {
+    
     var body: some View {
+    NavigationView{
         ScrollView(.vertical,showsIndicators: false){
         VStack{
             //Asking for motion permission and starting pedometer
@@ -23,15 +25,19 @@ struct Home: View {
             
              
             //User Movement Information
+            
+            
             TrackingInfo()
-            
-              
-            
+                
+
         }
-    }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
+        
+        }
         
     }
 }
 
-//Done9
+//Done10
 
