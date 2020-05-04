@@ -425,7 +425,7 @@ fileprivate class DMMotionTrackingSession {
     private func createDirectionStepTable(ADL:[(Int,Int)],totalDirections : Int){
         //print(self.sessionSteps,totalDirections)
         let stepsPerDirection : Float = Float(self.sessionSteps)/Float(totalDirections)
-       // print(stepsPerDirection)
+       //  print(stepsPerDirection)
         ///print(ADL.count)
         self.DirectionsStepsTable.removeAll()
         for element in ADL{

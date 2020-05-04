@@ -42,7 +42,7 @@ class MotionViewController: UIViewController {
 
 extension MotionViewController {
     private func onStart() {
-       
+        
         startDate = Date()
         checkAuthorizationStatus()
         startUpdating()
