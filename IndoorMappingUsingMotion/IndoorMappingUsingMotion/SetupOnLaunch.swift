@@ -14,4 +14,4 @@ let GlobalMotionTrackingHandler = DMMotionTrackingHandler()
 var GloabalCurrentDeviceHeading : Float = 0
 let fullWidth  = UIScreen.main.bounds.width
 let fullHeight  = UIScreen.main.bounds.height
-
+let GlobalRouteDisplaySystem = VMRouteDisplayingSystem()

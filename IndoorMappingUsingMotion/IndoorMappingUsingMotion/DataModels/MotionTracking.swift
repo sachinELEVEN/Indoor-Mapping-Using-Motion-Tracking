@@ -18,7 +18,7 @@ class VMMotionTrackingInfo : ObservableObject{
     @Published var totalDistance : Float = 0
    @Published  var activityTypes = [String]()
     @Published  var currentHeading : Float = 0
-    @Published var pathMagnitude = 5//Decrease to make path smaller
+  
     
     
     
@@ -180,7 +180,7 @@ class DMMotionTrackingHandler {
         
         var completePath = [[(Int,Float)]]()
         
-        print(self.trackingSessions.count)
+      //  print(self.trackingSessions.count)
         for session in self.trackingSessions{
            //Setting the path traced in this particular session
             session.setPath()
@@ -262,7 +262,7 @@ fileprivate class DMMotionTrackingSession {
         var currentDL = [Int]()//DL- Degree List
         var centralDeg = -1//Invalid state
         var currentDLSum = 0//Sum of all value of currentDL
-        print(self.sessionDirections.count)
+       // print(self.sessionDirections.count)
         
         for direction in self.sessionDirections{
            var counter = 0
@@ -277,7 +277,7 @@ fileprivate class DMMotionTrackingSession {
                 continue
             }
             
-            print(direction,centralDeg)
+           // print(direction,centralDeg)
             if abs(Int(direction)-centralDeg) < self.AFD {
              
                  currentDL.append(Int(direction))
@@ -327,7 +327,7 @@ fileprivate class DMMotionTrackingSession {
              
         }
         
-        print(directionsList_Arr.count)
+      //  print(directionsList_Arr.count)
         self.createADL(directionsList_ArrP : directionsList_Arr)
         
     }
@@ -345,7 +345,7 @@ fileprivate class DMMotionTrackingSession {
         var modifiedDirectionLength = -1 //Invalid State
         
          var directionsLength = 0//Sum of all lengths in ADL
-        print(directionsList_Arr.count)
+      //  print(directionsList_Arr.count)
         
         if directionsList_Arr.count == 0{
             print("No Path Found")
@@ -427,6 +427,7 @@ fileprivate class DMMotionTrackingSession {
         let stepsPerDirection : Float = Float(self.sessionSteps)/Float(totalDirections)
        // print(stepsPerDirection)
         ///print(ADL.count)
+        self.DirectionsStepsTable.removeAll()
         for element in ADL{
             ///elemet -> (direction,length)
             
@@ -440,7 +441,7 @@ fileprivate class DMMotionTrackingSession {
             
         }
         
-        DMMotionTrackingSession.displayPath(self.DirectionsStepsTable)
+      //  DMMotionTrackingSession.displayPath(self.DirectionsStepsTable)
         
     }
     
@@ -464,6 +465,6 @@ fileprivate class DMMotionTrackingSession {
     
         
 }
-//Done105
+//Done139
 
 

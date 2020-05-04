@@ -22,23 +22,36 @@ class Node{
 
 class VMRouteDisplayingSystem:ObservableObject{
     
-    var zooomFactor : Float
+   
     
-    init(zooomFactor:Float){
-        self.zooomFactor = zooomFactor
+    private var completePath = [[(Int,Float)]](){
+    didSet{
+        print("Complete Path has been updated")
+        }
+    }
+    
+    deinit{
+        print("Computing Path")
     }
     
   private var pathNodes = [Node]()
     
-    func getPathNodes()->[Node]{
-        self.computePathNodes()
+    func getPathNodes(zoomFactor : Float)->[Node]{
+       self.computePathNodes(zoomFactor : zoomFactor)
         return self.pathNodes
     }
     
-    private func computePathNodes(){
+    func computePathNodes(zoomFactor : Float,getPath:Bool = false){
+    
+        if getPath{
+            completePath = GlobalMotionTrackingHandler.getPath()
+        }
         
-       let completePath = GlobalMotionTrackingHandler.getPath()
-        print("FullW,FullH",fullWidth,fullHeight)
+        self.pathNodes.removeAll()
+        
+       
+       
+       
         let originNode = Node(x: Int(fullWidth/2), y: Int(fullHeight/2))
         self.pathNodes.append(originNode)
         var previousNode : Node = originNode
@@ -51,8 +64,8 @@ class VMRouteDisplayingSystem:ObservableObject{
                 //direction is wrt NORTH
                 let direction = pathPoint.0
                 let steps = pathPoint.1
-                let magnitude = Float(self.zooomFactor)*steps
-                
+                let magnitude : Float = zoomFactor*steps
+               
                 
                 let relativeX = Int(magnitude*sinf(Float(direction) * Float.pi / 180))
                 let relativeY = Int(magnitude*cosf(Float(direction) * Float.pi / 180))
@@ -85,4 +98,4 @@ class VMRouteDisplayingSystem:ObservableObject{
     
     
 }
-//Done40
+//Done78
