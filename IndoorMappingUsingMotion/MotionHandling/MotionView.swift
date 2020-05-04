@@ -37,6 +37,9 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
     let drawPath : Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<AnyUIKitView>) -> T {
+        if self.drawPath {
+         GlobalRouteDisplaySystem.computePathNodes(zoomFactor: 5,getPath: true)
+        }
         return viewController
     }
     
@@ -60,24 +63,24 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
 struct TrackedPath : View{
     @State var zoom : Float = 5
     var body : some View{
+        ScrollView(.vertical,showsIndicators: false){
         VStack{
-//            Text("Path")
-//                .fontWeight(.heavy)
-//                .font(.largeTitle)
-//            .padding(.top,30)
+            
             ZStack(alignment:.bottom) {
                 AnyUIKitView(viewController: Shapes(),lineNum: self.zoom,drawPath: true)
-                       .background(CustomBlur(style: .systemUltraThinMaterial))
-                       .cornerRadius(10)
+                    .background(CustomBlur(style: .systemUltraThinMaterial))
+                    .cornerRadius(10)
                     .frame(width:fullWidth/1.05,height:fullHeight/1.2)
                     .padding(.horizontal)
                     .padding(.bottom)
                 Slider(value: $zoom, in: 1...40,step:0.3)
                     .padding(.bottom,30)
                     .padding(.horizontal,30)
-                    
+                
+            }
         }
-        }
+    }.navigationBarTitle("Your Path")
+        
     }
 }
-//Done25
+//Done31

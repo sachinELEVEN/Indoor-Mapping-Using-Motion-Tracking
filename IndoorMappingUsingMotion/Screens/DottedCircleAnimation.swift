@@ -90,15 +90,17 @@ class Shapes : UIViewController{
     
   //MARK:- Traced Path Drawing
     
+    
+    
     func drawTracedPath(zooomFactor : Float){
         
-        for subview in  self.view.subviews{
-            subview.removeFromSuperview()
-        }
        
-        let pathFinder = VMRouteDisplayingSystem(zooomFactor:zooomFactor)
-      let pathNodes = pathFinder.getPathNodes()
+        view.layer.sublayers?.removeAll()
        
+        let pathFinder = GlobalRouteDisplaySystem
+        let pathNodes = pathFinder.getPathNodes(zoomFactor: zooomFactor)
+       
+      
         //TEST NODES FOR PATH TRACING
 //        var localNodes = [Node]()
 //        let n1 = Node(x: 200, y: 450)
@@ -128,8 +130,8 @@ class Shapes : UIViewController{
     
     
     private func drawLineBW2Points(pathL:UIBezierPath,shapeLayerL:CAShapeLayer,point1: Node,point2 : Node,lineColor: UIColor = UIColor.orange){
-        print("Printing points")
-            print(point1.x,point1.y,point2.x,point2.y)
+      //  print("Printing points")
+         //   print(point1.x,point1.y,point2.x,point2.y)
         let start = CGPoint(x: point1.x, y: point1.y)
          let end = CGPoint(x: point2.x, y: point2.y)
                
@@ -150,6 +152,9 @@ class Shapes : UIViewController{
                self.view.layer.addSublayer(shapeLayerL)
     }
     
+         
+    
+    
     
 }
-//Done41
+//Done80
