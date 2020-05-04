@@ -48,7 +48,7 @@ func UIScreenHeader(title : String)->some View{
     }.padding(.leading)
     
 }
-
+ 
 func label(imgName : String,title:String,content :String,units : String,small : Bool = false)->some View{
     return VStack(alignment:.leading){
         VStack(alignment:.leading){

@@ -22,7 +22,7 @@ struct Home: View {
             UserHeading()
            
             //MARK:- CUSTOM UI BELOW
-            
+             
              
             //User Movement Information
             

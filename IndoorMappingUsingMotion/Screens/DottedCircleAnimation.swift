@@ -100,7 +100,7 @@ class Shapes : UIViewController{
         let pathFinder = GlobalRouteDisplaySystem
         let pathNodes = pathFinder.getPathNodes(zoomFactor: zooomFactor)
        
-      
+       
         //TEST NODES FOR PATH TRACING
 //        var localNodes = [Node]()
 //        let n1 = Node(x: 200, y: 450)

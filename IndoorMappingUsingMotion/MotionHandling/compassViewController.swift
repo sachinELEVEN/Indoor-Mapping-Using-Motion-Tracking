@@ -11,7 +11,7 @@ import CoreLocation
 import SwiftUI
 
 struct UserHeading : UIViewControllerRepresentable {
-
+ 
 
     func makeUIViewController(context:  UIViewControllerRepresentableContext<UserHeading>) -> CompassAccess {
         return CompassAccess()
