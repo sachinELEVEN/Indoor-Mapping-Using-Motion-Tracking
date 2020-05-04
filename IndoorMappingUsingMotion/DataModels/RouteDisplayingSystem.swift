@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 ///Responsible for displaying routes of mapped routes
 
@@ -18,6 +19,7 @@ class Node{
     
     var x : Int
     var y : Int
+    var color : UIColor = .orange
 }
 
 class VMRouteDisplayingSystem:ObservableObject{
@@ -78,8 +80,7 @@ class VMRouteDisplayingSystem:ObservableObject{
                 
                 
                 let newNode = Node(x: offsetX+relativeX, y: offsetY+relativeY)
-                print("POINT")
-                print(newNode.x,newNode.y)
+                newNode.color = self.getPointColor(direction: Float(direction))
                 
                 //Adding newNode
                 self.pathNodes.append(newNode)
@@ -96,6 +97,39 @@ class VMRouteDisplayingSystem:ObservableObject{
     }
     
     
+    private func getPointColor(direction:Float)->UIColor{
+        
+        if direction<23 {
+                return UIColor.systemOrange
+             }
+             else if  direction<68 {
+                return UIColor.systemBlue
+             }
+             else if  direction<113 {
+               return UIColor.systemRed
+             }
+             else if  direction<158 {
+                return UIColor.systemPink
+             }
+             else if  direction<203 {
+            return UIColor.systemYellow
+             }
+             else if  direction<247 {
+                return UIColor.systemRed
+             }
+             else if  direction<293 {
+            return UIColor.systemPurple
+             }
+             else if  direction<338 {
+               return UIColor.systemIndigo
+             }else {
+                 return UIColor.systemOrange
+             }
+        
+        
+    }
+    
+    
     
 }
-//Done79
+//Done83

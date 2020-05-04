@@ -79,7 +79,7 @@ class Shapes : UIViewController{
        
         shapeLayer.path = path!.cgPath
         shapeLayer.strokeColor = lineColor.cgColor
-        shapeLayer.lineWidth = 16.0
+        shapeLayer.lineWidth = 25.0
         
         shapeLayer.lineJoin = CAShapeLayerLineJoin.round
         shapeLayer.lineCap = CAShapeLayerLineCap.round
@@ -120,7 +120,7 @@ class Shapes : UIViewController{
             let path = UIBezierPath()
             let shapeLayer = CAShapeLayer()
             
-            self.drawLineBW2Points(pathL: path,shapeLayerL: shapeLayer, point1: point1, point2: point2)
+            self.drawLineBW2Points(pathL: path,shapeLayerL: shapeLayer, point1: point1, point2: point2,zoomFactor: zooomFactor)
          
             
         }
@@ -129,7 +129,7 @@ class Shapes : UIViewController{
     }
     
     
-    private func drawLineBW2Points(pathL:UIBezierPath,shapeLayerL:CAShapeLayer,point1: Node,point2 : Node,lineColor: UIColor = UIColor.orange){
+    private func drawLineBW2Points(pathL:UIBezierPath,shapeLayerL:CAShapeLayer,point1: Node,point2 : Node,lineColor: UIColor = UIColor.orange,zoomFactor:Float){
       //  print("Printing points")
          //   print(point1.x,point1.y,point2.x,point2.y)
         let start = CGPoint(x: point1.x, y: point1.y)
@@ -143,8 +143,8 @@ class Shapes : UIViewController{
                //design path in layer
               
                shapeLayerL.path = pathL.cgPath
-               shapeLayerL.strokeColor = lineColor.cgColor
-               shapeLayerL.lineWidth = 10.0
+        shapeLayerL.strokeColor = point2.color.cgColor
+               shapeLayerL.lineWidth = 10.0 * CGFloat(zoomFactor/Float(5))
                
                shapeLayerL.lineJoin = CAShapeLayerLineJoin.round
                shapeLayerL.lineCap = CAShapeLayerLineCap.round
@@ -157,4 +157,4 @@ class Shapes : UIViewController{
     
     
 }
-//Done80
+//Done83

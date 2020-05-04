@@ -82,3 +82,4 @@ func label(imgName : String,title:String,content :String,units : String,small : 
         .cornerRadius(10)
     }
 }
+//Done10

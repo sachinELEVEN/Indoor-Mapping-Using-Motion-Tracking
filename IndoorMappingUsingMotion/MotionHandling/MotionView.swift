@@ -63,24 +63,36 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
 struct TrackedPath : View{
     @State var zoom : Float = 5
     var body : some View{
-        ScrollView(.vertical,showsIndicators: false){
+       // ScrollView(.vertical,showsIndicators: false){
         VStack{
             
-            ZStack(alignment:.bottom) {
+            VStack {
                 AnyUIKitView(viewController: Shapes(),lineNum: self.zoom,drawPath: true)
-                    .background(CustomBlur(style: .systemUltraThinMaterial))
-                    .cornerRadius(10)
-                    .frame(width:fullWidth/1.05,height:fullHeight/1.2)
-                    .padding(.horizontal)
-                    .padding(.bottom)
-                Slider(value: $zoom, in: 1...40,step:0.3)
-                    .padding(.bottom,30)
+                    //.background(CustomBlur(style: .systemUltraThinMaterial))
+                   // .cornerRadius(10)
+                    .frame(width:fullWidth,height:fullHeight - 180)
+                  //  .padding(.horizontal)
+                   // .padding(.bottom)
+              
+                VStack(alignment:.leading){
+                    UIScreenHeader(title: "Adjust Zoom")
+                        .padding([.leading,.top])
+                Slider(value: $zoom, in: -40...40,step:0.3)
+                  
+                    .padding(.bottom,40)
                     .padding(.horizontal,30)
+            }
+                      .frame(width:fullWidth,height:170)
+                   .background(CustomBlur(style: .systemUltraThinMaterial))
+                     .cornerRadius(20)
+                                       .padding(.horizontal)
+                                     
+                    
                 
             }
-        }
-    }.navigationBarTitle("Your Path")
+        //}
+        }.navigationBarTitle(Text("Your Path"),displayMode: .inline)
         
     }
 }
-//Done31
+//Done39

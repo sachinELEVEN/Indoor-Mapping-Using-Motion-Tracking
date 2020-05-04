@@ -44,7 +44,8 @@ struct TrackingInfo: View {
            
             
            NavigationLink(destination:TrackedPath()){
-             label(imgName: "location.north.line.fill", title: "Path Traced", content:"" , units: "")
+             label(imgName: "location.north.line.fill", title: "Path Traced", content:"Make some movement and then see the path of your movement \n" , units: "",small: true)
+                .foregroundColor(.primary)
 
                   }
                
@@ -68,4 +69,4 @@ struct TrackingInfo: View {
         
     }
 }
-//Done50
+//Done56
