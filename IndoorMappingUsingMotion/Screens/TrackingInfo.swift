@@ -34,7 +34,7 @@ struct TrackingInfo: View {
                                              .font(.system(size: 40, weight: Font.Weight.bold, design: Font.Design.default))
                     .foregroundColor(.secondary)
                               
-                
+                 
                 
                       
                        

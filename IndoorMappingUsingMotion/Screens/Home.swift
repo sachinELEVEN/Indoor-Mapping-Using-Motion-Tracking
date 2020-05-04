@@ -21,7 +21,7 @@ struct Home: View {
            
             //MARK:- CUSTOM UI BELOW
             
-            
+             
             //User Movement Information
             TrackingInfo()
             
