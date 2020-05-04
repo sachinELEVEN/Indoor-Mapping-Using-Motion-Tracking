@@ -62,7 +62,7 @@ class Shapes : UIViewController{
     }
     
     func drawLineFromPoint(X:Float, ofColor lineColor: UIColor = UIColor.orange) {
-print(X)
+//print(X)
         let start = CGPoint(x: Int(X), y: 0)
         let end = CGPoint(x: Int(X), y: 200)
         

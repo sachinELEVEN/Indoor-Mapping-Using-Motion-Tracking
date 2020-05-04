@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+ var val = true
 
 ///Use this instance for getting relevant information about tracking.
 ///VM - View Model
@@ -147,6 +148,12 @@ class DMMotionTrackingHandler {
         
         //Get Directions for this time perdiod/session
         newSession.sessionDirections = self.userDirections
+       
+            if val{
+                val = false
+             newSession.self.findPath()
+        }
+       
         self.userDirections.removeAll()
         
         
@@ -182,6 +189,9 @@ fileprivate class DMMotionTrackingSession {
         self.sessionActivityTypes = sessionActivityTypes
         self.sessionStartTime = sessionStartTime
         self.sessionEndTime = sessionEndTime
+        
+        
+        
     }
     
    
@@ -213,12 +223,14 @@ fileprivate class DMMotionTrackingSession {
     private let stepLength :Float = 0.3//metre
     
     ///Denoting Steps in each direction
-    var DirectionsStepsTable = [(Int,Int)]()//(direction,steps)
+    var DirectionsStepsTable = [(Int,Float)]()//(direction,steps)
      
     ///Allowed Fluctuation Degrees (All degrees within this range of a central degree will be considered as together)
       let AFD = 20
     
-    
+    func findPath(){
+        self.createDirectionsList()
+    }
     
     private func createDirectionsList(){
         
@@ -227,11 +239,14 @@ fileprivate class DMMotionTrackingSession {
              var directionsList_Arr = [[Int]]()
         
         var currentDL = [Int]()//DL- Degree List
+        var centralDeg = -1//Invalid state
+        var currentDLSum = 0//Sum of all value of currentDL
+        print(self.sessionDirections.count)
         
         for direction in self.sessionDirections{
+           var counter = 0
+            
            
-            var centralDeg = -1//Invalid state
-            var currentDLSum = 0//Sum of all value of currentDL
             
             //Setting the central degree for the currentDL
             if currentDL.count == 0{
@@ -241,8 +256,27 @@ fileprivate class DMMotionTrackingSession {
                 continue
             }
             
+            print(direction,centralDeg)
             if abs(Int(direction)-centralDeg) < self.AFD {
+             
                  currentDL.append(Int(direction))
+               currentDLSum += Int(direction)
+                
+                if counter == self.sessionDirections.count-1 {
+                    
+                    //Saving the avg of currentDL as the last element of currentDL
+                                   let currentDLAvg = currentDLSum/currentDL.count
+                  
+                   
+                                   currentDL.append(currentDLAvg)
+                                   
+                                   
+                                   //saving the previous DL
+                                   directionsList_Arr.append(currentDL)
+                    
+                }
+                
+                
             }else{
                 //Need to create a new DL
                 
@@ -251,23 +285,28 @@ fileprivate class DMMotionTrackingSession {
                 let currentDLAvg = currentDLSum/currentDL.count
                 currentDL.append(currentDLAvg)
                 
-                
+              
+             
                 //saving the previous DL
                 directionsList_Arr.append(currentDL)
                
                 //Resetting the currentDL and central degree
                 currentDL.removeAll()
                  centralDeg = -1
+                currentDLSum = 0
                 
                 //Saving directon in the new currentDL
                 currentDL.append(Int(direction))
                 centralDeg = currentDL[0]
+                 currentDLSum += currentDL[0]
                
             }
+            
+            counter += 1
              
         }
         
-       
+        print(directionsList_Arr.count)
         self.createADL(directionsList_ArrP : directionsList_Arr)
         
     }
@@ -275,6 +314,9 @@ fileprivate class DMMotionTrackingSession {
    ///ADL - Array of Directions List , Array of avg of each DL in self.directionsList_Arr
     private func createADL(directionsList_ArrP : [[Int]]){
         
+        
+       
+            
         var directionsList_Arr = directionsList_ArrP
         
          ///Average of Directions List2,  Array of avg of degrees of each DL with the DL length in self.directionsList_Arr
@@ -282,9 +324,22 @@ fileprivate class DMMotionTrackingSession {
         var modifiedDirectionLength = -1 //Invalid State
         
          var directionsLength = 0//Sum of all lengths in ADL
+        print(directionsList_Arr.count)
         
-        for i in 0..<directionsList_Arr.count-1{
+        if directionsList_Arr.count == 0{
+            print("No Path Found")
+            return
+        }
+        
+       
+        for i in 0..<directionsList_Arr.count {
             
+            if i == directionsList_ArrP.count-1{
+               
+                break
+            }
+            
+            //print(directionsList_Arr.count,i)
             var count1 = directionsList_Arr[i].count - 1
             let count2 = directionsList_Arr[i+1].count - 1
             
@@ -298,8 +353,10 @@ fileprivate class DMMotionTrackingSession {
                        }
             
             if abs(avg1 - avg2) < self.AFD{
+                
                 let avg3 = (avg1+avg2)/2 //avg is direction
                modifiedDirectionLength = count1+count2
+              
                 
                 directionsList_Arr[i+1][count2] = avg3
                 
@@ -326,6 +383,8 @@ fileprivate class DMMotionTrackingSession {
         
         
        
+        
+    
               //Handling the last element of directionsList_Arr
         let outerLast = directionsList_Arr.count - 1
         let innerLast = directionsList_Arr[outerLast].count - 1
@@ -336,10 +395,6 @@ fileprivate class DMMotionTrackingSession {
                                       
                                       directionsLength += modifiedDirectionLength
                        
-                       
-                       
-              
-        
         
         self.createDirectionStepTable(ADL:ADL,totalDirections: directionsLength)
         
@@ -347,23 +402,24 @@ fileprivate class DMMotionTrackingSession {
     
     
     private func createDirectionStepTable(ADL:[(Int,Int)],totalDirections : Int){
-        
-        let stepsPerDirection = self.sessionSteps/totalDirections
-        
+        //print(self.sessionSteps,totalDirections)
+        let stepsPerDirection : Float = Float(self.sessionSteps)/Float(totalDirections)
+       // print(stepsPerDirection)
+        ///print(ADL.count)
         for element in ADL{
-            //elemet = (direction,length)
+            ///elemet -> (direction,length)
             
             let direction = element.0
             let length = element.1
             
-            let stepsinElementDirection = stepsPerDirection * length
+            let stepsinElementDirection = stepsPerDirection * Float(length)
             
             let directionAndSteps = (direction,stepsinElementDirection)
             self.DirectionsStepsTable.append(directionAndSteps)
             
         }
         
-        self.resetAptData()
+        self.displayPath()
         
     }
     
@@ -383,15 +439,10 @@ fileprivate class DMMotionTrackingSession {
     }
     
     
-    private func resetAptData(){
-        
-    }
-    
-    
-    
+   
     
         
 }
-//Done62
+//Done82
 
 
