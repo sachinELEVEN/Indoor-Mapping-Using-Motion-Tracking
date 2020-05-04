@@ -47,7 +47,11 @@ struct TrackingInfo: View {
             label(imgName: "flame.fill", title: "Steps", content:"\(motionTrackingInfo.totalSteps)" , units: "steps")
             label(imgName: "flame.fill", title: "Distance", content:"\(Int(motionTrackingInfo.totalDistance))" , units: "metres")
 
-         
+            
+            Button(action:{ let _ = GlobalMotionTrackingHandler.getPath()}){
+            Text("Get Path")
+            }
+         //GlobalMotionTrackingHandler
           
         
            // BreatheAnimation()

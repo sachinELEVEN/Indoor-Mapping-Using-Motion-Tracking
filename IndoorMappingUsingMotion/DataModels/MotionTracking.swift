@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
- var val = true
+ 
 
 ///Use this instance for getting relevant information about tracking.
 ///VM - View Model
@@ -149,10 +149,10 @@ class DMMotionTrackingHandler {
         //Get Directions for this time perdiod/session
         newSession.sessionDirections = self.userDirections
        
-            if val{
-                val = false
-             newSession.self.findPath()
-        }
+//            if val{
+//                val = false
+//             newSession.self.findPath()
+//        }
        
         self.userDirections.removeAll()
         
@@ -174,6 +174,30 @@ class DMMotionTrackingHandler {
     }
     }
     
+   ///Returns Array of DirectionsSteps Table for all sessions of user motion
+    func getPath()-> [[(Int,Float)]]{
+        
+        var completePath = [[(Int,Float)]]()
+        
+        print(self.trackingSessions.count)
+        for session in self.trackingSessions{
+           //Setting the path traced in this particular session
+            session.setPath()
+            //Getting the traced path in this session
+           let tracedPath = session.DirectionsStepsTable
+            completePath.append(tracedPath)
+            
+        }
+        
+        print("Display Complete Path Traced")
+        for path in completePath{
+            print("New Session")
+            DMMotionTrackingSession.displayPath(path)
+        }
+        
+        
+        return completePath
+    }
     
     
 }
@@ -228,7 +252,8 @@ fileprivate class DMMotionTrackingSession {
     ///Allowed Fluctuation Degrees (All degrees within this range of a central degree will be considered as together)
       let AFD = 20
     
-    func findPath(){
+    ///Sets Path traced during this session
+    func setPath(){
         self.createDirectionsList()
     }
     
@@ -419,16 +444,16 @@ fileprivate class DMMotionTrackingSession {
             
         }
         
-        self.displayPath()
+        DMMotionTrackingSession.displayPath(self.DirectionsStepsTable)
         
     }
     
     
-    private func displayPath(){
+     static func displayPath(_ directionsStepsTable : [(Int,Float)]){
         
          print("Path is shown below")
        
-        for directionalPath in self.DirectionsStepsTable{
+        for directionalPath in directionsStepsTable{
            
             print("Direction : ",directionalPath.0, " Steps ", directionalPath.1 )
             
@@ -443,6 +468,6 @@ fileprivate class DMMotionTrackingSession {
     
         
 }
-//Done82
+//Done103
 
 
