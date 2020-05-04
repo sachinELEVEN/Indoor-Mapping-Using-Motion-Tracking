@@ -22,7 +22,11 @@ class Node{
 
 class VMRouteDisplayingSystem:ObservableObject{
     
-
+    var zooomFactor : Float
+    
+    init(zooomFactor:Float){
+        self.zooomFactor = zooomFactor
+    }
     
   private var pathNodes = [Node]()
     
@@ -47,7 +51,7 @@ class VMRouteDisplayingSystem:ObservableObject{
                 //direction is wrt NORTH
                 let direction = pathPoint.0
                 let steps = pathPoint.1
-                let magnitude = 10*steps
+                let magnitude = Float(self.zooomFactor)*steps
                 
                 
                 let relativeX = Int(magnitude*sinf(Float(direction) * Float.pi / 180))
@@ -81,4 +85,4 @@ class VMRouteDisplayingSystem:ObservableObject{
     
     
 }
-//Done30
+//Done40

@@ -20,7 +20,7 @@ struct TrackingInfo: View {
             HStack{
 
                            ForEach(0..<15,id:\.self){index in
-                            AnyUIKitView(viewController: Shapes(lineSpacing: self.motionTrackingInfo.getInterLineSpacing(index),drawPath : false),lineNum : index, drawPath: false)
+                            AnyUIKitView(viewController: Shapes(),lineNum : Float(index), drawPath: false)
 
                            }.frame(height:10)
                             .animation(.easeIn)
@@ -41,11 +41,11 @@ struct TrackingInfo: View {
              UIScreenHeader(title: "Path Traced")
                .padding(.top)
             
-           NavigationLink(destination: AnyUIKitView(viewController: Shapes(drawPath : true),lineNum: 0,drawPath: true)){
-            Button(action:{
-                self.showPath = true
-            }){ label(imgName: "location.north.line.fill", title: "Path Traced", content:"" , units: "")
-            }
+           
+            
+           NavigationLink(destination:TrackedPath()){
+             label(imgName: "location.north.line.fill", title: "Path Traced", content:"" , units: "")
+
                   }
                
           
@@ -68,4 +68,4 @@ struct TrackingInfo: View {
         
     }
 }
-//Done40
+//Done50

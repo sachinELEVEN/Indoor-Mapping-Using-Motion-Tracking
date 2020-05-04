@@ -12,17 +12,14 @@ import UIKit
 
 class Shapes : UIViewController{
     
-    var lineSpacing : CGFloat = 100
-    var drawPath : Bool = false
+   // var lineSpacing : CGFloat = 100
+  //  var drawPath : Bool = false
     var path : UIBezierPath? = nil
     let shapeLayer = CAShapeLayer()
     
-    init(lineSpacing:CGFloat?=nil,drawPath : Bool){
+    init(){
          super.init(nibName: nil, bundle: nil)
-        self.drawPath = drawPath
-        if !drawPath{
-          self.lineSpacing = lineSpacing!
-        }
+    
     }
     
     required init?(coder: NSCoder) {
@@ -34,40 +31,40 @@ class Shapes : UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if  self.drawPath{
-            self.drawTracedPath()
-        }else{
-            self.addCircle(radiusL: self.lineSpacing)
-        }
+//        if  self.drawPath{
+//         //   self.drawTracedPath(zooomFactor : Float(self.lineSpacing))
+//        }else{
+//            //self.addCircle(radiusL: self.lineSpacing)
+//        }
             
     }
     
-    func addCircle(radiusL:CGFloat){
-        
-         path = UIBezierPath(arcCenter: CGPoint(x: fullWidth/2, y: 0), radius: CGFloat(radiusL), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
-
-             
-             shapeLayer.path = path!.cgPath
-             
-
-             // Change the fill color
-             shapeLayer.fillColor = UIColor.clear.cgColor
-             // You can change the stroke color
-             shapeLayer.strokeColor = UIColor.orange.cgColor
-             // You can change the line width
-             shapeLayer.lineWidth = 2;
-            // shapeLayer.lineJoin = CAShapeLayerLineJoin.round;
-       // shapeLayer.lineCap = CAShapeLayerLineCap.round;
-     
-            // shapeLayer.lineDashPattern = [10,10];
-            // shapeLayer.cornerRadius = 50
-           
-            // shapeLayer.lineDashPhase = 3.0;
-             
-
-             view.layer.addSublayer(shapeLayer)
-    }
-    
+//    func addCircle(radiusL:CGFloat){
+//
+//         path = UIBezierPath(arcCenter: CGPoint(x: fullWidth/2, y: 0), radius: CGFloat(radiusL), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
+//
+//
+//             shapeLayer.path = path!.cgPath
+//
+//
+//             // Change the fill color
+//             shapeLayer.fillColor = UIColor.clear.cgColor
+//             // You can change the stroke color
+//             shapeLayer.strokeColor = UIColor.orange.cgColor
+//             // You can change the line width
+//             shapeLayer.lineWidth = 2;
+//            // shapeLayer.lineJoin = CAShapeLayerLineJoin.round;
+//       // shapeLayer.lineCap = CAShapeLayerLineCap.round;
+//
+//            // shapeLayer.lineDashPattern = [10,10];
+//            // shapeLayer.cornerRadius = 50
+//
+//            // shapeLayer.lineDashPhase = 3.0;
+//
+//
+//             view.layer.addSublayer(shapeLayer)
+//    }
+//
     func drawLineFromPoint(X:Float, ofColor lineColor: UIColor = UIColor.orange) {
 //print(X)
         let start = CGPoint(x: Int(X), y: 0)
@@ -93,10 +90,13 @@ class Shapes : UIViewController{
     
   //MARK:- Traced Path Drawing
     
-     func drawTracedPath(){
+    func drawTracedPath(zooomFactor : Float){
         
+        for subview in  self.view.subviews{
+            subview.removeFromSuperview()
+        }
        
-      let pathFinder = VMRouteDisplayingSystem()
+        let pathFinder = VMRouteDisplayingSystem(zooomFactor:zooomFactor)
       let pathNodes = pathFinder.getPathNodes()
        
         //TEST NODES FOR PATH TRACING
@@ -127,7 +127,7 @@ class Shapes : UIViewController{
     }
     
     
-    private func drawLineBW2Points(pathL:UIBezierPath,shapeLayerL:CAShapeLayer,point1: Node,point2 : Node,lineColor: UIColor = UIColor.blue){
+    private func drawLineBW2Points(pathL:UIBezierPath,shapeLayerL:CAShapeLayer,point1: Node,point2 : Node,lineColor: UIColor = UIColor.orange){
         print("Printing points")
             print(point1.x,point1.y,point2.x,point2.y)
         let start = CGPoint(x: point1.x, y: point1.y)
@@ -152,4 +152,4 @@ class Shapes : UIViewController{
     
     
 }
-//Done35
+//Done41

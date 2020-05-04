@@ -18,6 +18,7 @@ class VMMotionTrackingInfo : ObservableObject{
     @Published var totalDistance : Float = 0
    @Published  var activityTypes = [String]()
     @Published  var currentHeading : Float = 0
+    @Published var pathMagnitude = 5//Decrease to make path smaller
     
     
     
@@ -189,12 +190,7 @@ class DMMotionTrackingHandler {
             
         }
         
-//        print("Display Complete Path Traced")
-//        for path in completePath{
-//            print("New Session")
-//            DMMotionTrackingSession.displayPath(path)
-//        }
-        
+
         
         return completePath
     }

@@ -33,7 +33,7 @@ struct MotionView : UIViewControllerRepresentable {
 struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
     
     let viewController : T
-    let lineNum : Int
+    let lineNum : Float
     let drawPath : Bool
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<AnyUIKitView>) -> T {
@@ -45,13 +45,39 @@ struct AnyUIKitView<T:UIViewController> : UIViewControllerRepresentable {
         if let shapes = uiViewController as? Shapes {
             
             if drawPath{
-             //   shapes.drawTracedPath()
+                shapes.drawTracedPath(zooomFactor : self.lineNum)
             }
             else{
-            shapes.drawLineFromPoint(X: Float(GlobalMotionTrackingDisplayInfo.getInterLineSpacing(self.lineNum)))
+            shapes.drawLineFromPoint(X: Float(GlobalMotionTrackingDisplayInfo.getInterLineSpacing(Int(self.lineNum))))
             }
        }
         
     }
 }
-//Done5
+
+
+
+struct TrackedPath : View{
+    @State var zoom : Float = 5
+    var body : some View{
+        VStack{
+//            Text("Path")
+//                .fontWeight(.heavy)
+//                .font(.largeTitle)
+//            .padding(.top,30)
+            ZStack(alignment:.bottom) {
+                AnyUIKitView(viewController: Shapes(),lineNum: self.zoom,drawPath: true)
+                       .background(CustomBlur(style: .systemUltraThinMaterial))
+                       .cornerRadius(10)
+                    .frame(width:fullWidth/1.05,height:fullHeight/1.2)
+                    .padding(.horizontal)
+                    .padding(.bottom)
+                Slider(value: $zoom, in: 1...40,step:0.3)
+                    .padding(.bottom,30)
+                    .padding(.horizontal,30)
+                    
+        }
+        }
+    }
+}
+//Done25
